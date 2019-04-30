@@ -7,42 +7,24 @@
 </style>
 <div class="container">
     <div class="row">
+        {% for utilities in utilities_list %}
         <div class="col-sm-4">
             <div class="card utilities-card">
-                <div class="card-header bg-info text-white ">Mouth/Year</div>
+                <div class="card-header bg-info text-white ">{{ utilities }}</div>
                 <div class="card-body">
-                    <p class="card-text">Underpayment: 3487.68</p>
-                    <p class="card-text">Amount to pay: 4198.54</p>
-                    <p class="card-text">Payments last mouth: 5000</p>
-                    <h4 class="card-title">To pay: 2686.22</h4>
-                    
+                    <p class="card-text">Underpayment: {{ utilities.underpayment }}</p>
+                    <p class="card-text">Amount to pay: {{ utilities.amount_to_pay }}</p>
+                    <p class="card-text">Payments last mouth: {{ utilities.payments_last_mouth }}</p>
+                    <h4 class="card-title">To pay: {{ utilities.to_pay }}</h4>
                 </div>
                 <div class="card-footer">
-                    <a href="#" class="btn btn-primary btn-block" role="button">More Info</a>
-                    <a href='#' class="btn btn-success btn-block" role="button">Edit</a>
-                    <a href='#' class="btn btn-danger btn-block" role="button">Delete</a>
+                    <a href="{% url 'utilities:detail' utilities.pk %}" class="btn btn-primary btn-block" role="button">More Info</a>
+                    <a href="{% url 'utilities:edit' utilities.pk %}" class="btn btn-success btn-block" role="button">Edit</a>
+                    <a href="" class="btn btn-danger btn-block" role="button">Delete</a>
                 </div> 
             </div>
         </div>
-        <div class="col-sm-4">
-                <div class="card utilities-card">
-                    <div class="card-header bg-info text-white ">Mouth/Year</div>
-                    <div class="card-body">
-                        <p class="card-text">Underpayment: 3487.68</p>
-                        <p class="card-text">Amount to pay: 4198.54</p>
-                        <p class="card-text">Payments last mouth: 5000</p>
-                        <h4 class="card-title">To pay: 2686.22</h4>
-                        
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="btn btn-primary btn-block" role="button">More Info</a>
-                        <a href='#' class="btn btn-success btn-block" role="button">Edit</a>
-                        <a href='#' class="btn btn-danger btn-block" role="button">Delete</a>
-                    </div> 
-                </div>
-            </div>
-            
-        
+        {% endfor %}
     </div>
 </div>
 {% endblock content %}

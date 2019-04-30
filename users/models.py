@@ -6,33 +6,33 @@ from core.validators import validate_norm
 
 
 class UtilitiesUser(AbstractUser):
-    norm_help_text = "Required. Only numbers greater than zero"
+    price_help_text = "Required. Only numbers greater than zero"
 
     hws_cold_water_norm = models.FloatField(
         _('HWS Cold Water Norm'),
         null=True,
         blank=False,
-        help_text=norm_help_text,
+        help_text=price_help_text,
         validators=[validate_norm],
     )
     cold_water_norm = models.FloatField(
         _('Cold Water Norm'),
         null=True,
         blank=False,
-        help_text=norm_help_text,
+        help_text=price_help_text,
         validators=[validate_norm],
     )
     sewage_norm = models.FloatField(
         _('Sewage Norm'),
         null=True,
         blank=False,
-        help_text=norm_help_text,
+        help_text=price_help_text,
         validators=[validate_norm],
     )
     electricity_norm = models.FloatField(
         _('Electricity Norm'),
         null=True,
         blank=False,
-        help_text=norm_help_text,
+        help_text=price_help_text,
         validators=[validate_norm],
     )

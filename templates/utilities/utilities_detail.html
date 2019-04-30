@@ -2,13 +2,13 @@
 {% block content %}
 <div class="jumbotron jumbotron-fluid bg-info text-white">
     <div class="container">
-        <h1>Utilites Check for Mouth/Year</h1>      
-        <p>Underpayment: 3487.68</p>
-        <p>Amount to pay: 4198.54</p>
-        <p>Payments last mouth: 5000</p>
-        <h4>To pay: 2686.22</h4>
+        <h1>Utilites Check for {{ utilities }}</h1>      
+        <p>Underpayment: {{ utilities.underpayment }}</p>
+        <p>Amount to pay: {{ utilities.amount_to_pay }}</p>
+        <p>Payments last mouth: {{ utilities.payments_last_mouth }}</p>
+        <h4>To pay: {{ utilities.to_pay }}</h4>
         <div class="btn-group">
-            <a href='#' class="btn btn-success" role="button">Edit</a>
+            <a href="{% url 'utilities:edit' utilities.pk %}" class="btn btn-success" role="button">Edit</a>
             <a href='#' class="btn btn-danger" role="button">Delete</a>
         </div>
     </div>
@@ -26,71 +26,71 @@
             <tbody>
                 <tr>
                     <td>Housing Stock</td>
-                    <td>1799.74</td>
+                    <td>{{ utilities.housing_stock }}</td>
                 </tr>
                 <tr>
                     <td>HWS: Thermal energy CP</td>
-                    <td>27.53</td>
+                    <td>{{ utilities.hws_thermal_energy_cp }}</td>
                 </tr>
                 <tr>
                     <td>HWS: Cold Water CP</td>
-                    <td>6.70</td>
+                    <td>{{ utilities.hws_cold_water_cp }}</td>
                 </tr>
                 <tr>
                     <td>Cold Water CP</td>
-                    <td>6.70</td>
+                    <td>{{ utilities.cold_water_cp }}</td>
                 </tr>
                 <tr>
                     <td>Sewage CP</td>
-                    <td>8.93</td>
+                    <td>{{ utilities.sewage_cp }}</td>
                 </tr>
                 <tr>
                     <td>Electricity CP</td>
-                    <td>181.54</td>
+                    <td>{{ utilities.electricity_cp }}</td>
                 </tr>
                 <tr>
                     <td>Special account for overhaul</td>
-                    <td>29.76</td>
+                    <td>{{ utilities.special_account_for_overhaul }}</td>
                 </tr>
                 <tr>
                     <td>Home Heating</td>
-                    <td>1419.19</td>
+                    <td>{{ utilities.home_heating }}</td>
                 </tr>
                 <tr>
                     <td>HWS: Thermal energy</td>
-                    <td>100.31</td>
+                    <td>{{ utilities.hws_thermal_energy }}</td>
                 </tr>
                 <tr>
                     <td>HWS: Cold Water</td>
-                    <td>24.95</td>
+                    <td>{{ utilities.hws_cold_water }}</td>
                 </tr>
                 <tr>
                     <td>Cold Water</td>
-                    <td>124.75</td>
+                    <td>{{ utilities.cold_water }}</td>
                 </tr>
                 <tr>
                     <td>Sewage</td>
-                    <td>95.76</td>
+                    <td>{{ utilities.sewage }}</td>
                 </tr>
                 <tr>
                     <td>Garbage service</td>
-                    <td>159.48</td>
+                    <td>{{ utilities.garbage_service }}</td>
                 </tr>
                 <tr>
                     <td>Electricity</td>
-                    <td>123.20</td>
+                    <td>{{ utilities.electricity }}</td>
                 </tr>
                 <tr>
                     <td>Intercom Maintenance</td>
-                    <td>30.00</td>
+                    <td>{{ utilities.intercom_maintenance }}</td>
                 </tr>
                 <tr>
                     <td>Gate Maintenance</td>
-                    <td>30.00</td>
+                    <td>{{ utilities.gate_maintenance }}</td>
                 </tr>
                 <tr>
                     <td>CCTV Maintenance</td>
-                    <td>30.00</td>
+                    <td>{{ utilities.cctv_maintenance }}</td>
                 </tr>
             </tbody>
             <tfoot>
@@ -113,23 +113,23 @@
             <tbody>
                 <tr>
                     <td>HWS: Cold Water</td>
-                    <td>3.3</td>
-                    <td>1.000</td>
+                    <td>{{ user.hws_cold_water_norm }}</td>
+                    <td>{{ utilities.hws_cold_water_consumption }}</td>
                 </tr>
                 <tr>
                     <td>Cold Water</td>
-                    <td>5.26</td>
-                    <td>5.0</td>
+                    <td>{{ user.cold_water_norm }}</td>
+                    <td>{{ utilities.cold_water_consumption }}</td>
                 </tr>
                 <tr>
                     <td>Sewage</td>
-                    <td>7.56</td>
-                    <td>6.0</td>
+                    <td>{{ user.sewage_norm }}</td>
+                    <td>{{ utilities.sewage_consumption }}</td>
                 </tr>
                 <tr>
                     <td>Electricity</td>
-                    <td>119</td>
-                    <td>70.00</td>
+                    <td>{{ user.electricity_norm }}</td>
+                    <td>{{ utilities.electricity_consumption }}</td>
                 </tr>
             </tbody>
         </table>

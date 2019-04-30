@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
+    'utilities.apps.UtilitiesConfig',
 
     # 3rd Party
     'crispy_forms',
@@ -59,7 +60,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates'),
-                 os.path.join(BASE_DIR, 'templates/users'), ],
+                 os.path.join(BASE_DIR, 'templates/users'),
+                 os.path.join(BASE_DIR, 'templates/utilities'), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -91,6 +93,7 @@ DATABASES = {
 
 # Custom user model
 AUTH_USER_MODEL = 'users.UtilitiesUser'
+LOGIN_URL = 'users:login'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
