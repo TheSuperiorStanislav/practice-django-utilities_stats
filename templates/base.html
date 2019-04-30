@@ -7,7 +7,9 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <title>Utilties Stats(DjangoProject)</title>
+    <title>
+        {% block title %}Utilties Stats(DjangoProject){% endblock %}
+    </title>
 </head>
 <body>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -31,9 +33,15 @@
                         Hi {{ user.username }}
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Edit profile</a>
-                            <a class="dropdown-item" href="#">View all data</a>
-                            <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
+                            <a class="dropdown-item" href="{% url 'users:detail' user.username %}">
+                                View account
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                View all data
+                            </a>
+                            <a class="dropdown-item" href="{% url 'users:logout' %}">
+                                Log Out
+                            </a>
                         </div>
                     </li>
                 {% else %}
@@ -42,8 +50,8 @@
                             Hi Guest
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{% url 'login' %}">Log In</a>
-                            <a class="dropdown-item" href="{% url 'signup' %}">Sign Up</a>
+                            <a class="dropdown-item" href="{% url 'users:login' %}">Log In</a>
+                            <a class="dropdown-item" href="{% url 'users:signup' %}">Sign Up</a>
                         </div>
                     </li>
                 {% endif %}

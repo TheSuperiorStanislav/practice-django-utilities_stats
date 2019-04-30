@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}User: {{ utilities_user.username }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid"> 
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">User: {{ utilities_user.username }}</h4>
+            <p class="card-text">Full name: {{ utilities_user.first_name }} {{ utilities_user.last_name }}</p>
+            <p class="card-text">E-mail: {{ utilities_user.email }}</p>
+            <p class="card-text">Date joined: {{ utilities_user.date_joined }}</p>
+            <p class="card-text">Last login: {{ utilities_user.last_login }}</p>
+            {% if can_edit %}
+            <a href="{% url 'users:edit' utilities_user.username %}" class="btn btn-success">
+                Edit Info
+            </a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th>Servises</th>
+                    <th>Norm</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>HWS: Cold Water</td>
+                    <td>{{ utilities_user.hws_cold_water_norm }}</td>
+                </tr>
+                <tr>
+                    <td>Cold Water</td>
+                    <td>{{ utilities_user.cold_water_norm }}</td>
+                </tr>
+                <tr>
+                    <td>Sewage</td>
+                    <td>{{ utilities_user.sewage_norm }}</td>
+                </tr>
+                <tr>
+                    <td>Electricity</td>
+                    <td>{{ utilities_user.electricity_norm }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div> 
+</div>
+{% endblock content %}
