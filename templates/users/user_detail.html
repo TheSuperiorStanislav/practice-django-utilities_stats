@@ -3,9 +3,9 @@
 {% block title %}User: {{ utilities_user.username }}{% endblock %}
 
 {% block content %}
-<div class="container-fluid"> 
-    <div class="card">
-        <div class="card-body">
+<div class="container-fluid">
+    <div class="card" style="margin: 1em 0;">
+        <div class="card-body text-dark text-center">
             <h4 class="card-title">User: {{ utilities_user.username }}</h4>
             <p class="card-text">Full name: {{ utilities_user.first_name }} {{ utilities_user.last_name }}</p>
             <p class="card-text">E-mail: {{ utilities_user.email }}</p>
@@ -18,7 +18,7 @@
             {% endif %}
         </div>
     </div>
-    <div class="table-responsive">
+    <div class="table-responsive" style="margin: 1em 0;">
         <table class="table table-dark table-striped">
             <thead>
                 <tr>

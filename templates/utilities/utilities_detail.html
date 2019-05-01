@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="jumbotron jumbotron-fluid bg-info text-white">
+<div class="jumbotron jumbotron-fluid bg-info text-white text-center">
     <div class="container">
         <h1>Utilites Check for {{ utilities }}</h1>      
         <p>Underpayment: {{ utilities.underpayment }}</p>
@@ -13,8 +13,7 @@
         </div>
     </div>
 </div>
-<div class="container"> 
-
+<div class="container-fluid">
     <div class="table-responsive">
         <table class="table table-dark table-striped">
             <thead>

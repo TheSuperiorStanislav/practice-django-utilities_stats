@@ -6,6 +6,7 @@ from django.views.generic import (
     DetailView,
     ListView,
     UpdateView,
+    DeleteView,
 )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
@@ -70,6 +71,14 @@ class EditUtilitiesView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         form.instance.to_pay = amount_to_pay - (
             payments_last_mouth - underpayment)
         return super(EditUtilitiesView, self).form_valid(form)
+
+    def test_func(self):
+        return self.get_object().owner == self.request.user
+
+
+class DeleteUtilitiesView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Utilities
+    success_url = reverse_lazy('utilities:list')
 
     def test_func(self):
         return self.get_object().owner == self.request.user
