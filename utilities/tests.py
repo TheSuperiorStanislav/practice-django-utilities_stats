@@ -11,8 +11,8 @@ from users.models import UtilitiesUser
 
 class UtilitiesManagerTests(TestCase):
 
-    def createUtilitiesEntry(self, month):
-        date = datetime.datetime.now(pytz.utc).replace(month=month)
+    def createUtilitiesEntry(self, month, year):
+        date = datetime.datetime.now(pytz.utc).replace(month=month, year=year)
         return Utilities.objects.create(
                 owner=self.user,
                 date=date,
@@ -51,8 +51,13 @@ class UtilitiesManagerTests(TestCase):
             password='secret'
         )
 
-        for i in range(1, 13):
-            self.createUtilitiesEntry(i)
+        self.cur_year = datetime.datetime.now(pytz.utc).year
+
+        for mouth in range(1, 13):
+            self.createUtilitiesEntry(mouth, self.cur_year)
+        for year in range(2015, 2019):
+            for mouth in range(1, 13):
+                self.createUtilitiesEntry(mouth, year)
 
     def test_string_representation(self):
         utilities = Utilities(date=datetime.datetime.now(pytz.utc))
@@ -60,47 +65,52 @@ class UtilitiesManagerTests(TestCase):
         self.assertEqual(str(utilities), df.format(get_format('DATE_FORMAT')))
 
     def test_avg_manager(self):
-        year = datetime.datetime.now(pytz.utc).year
         avg = Utilities.objects.avg_field(
             self.user,
-            year,
+            self.cur_year,
             'electricity_consumption'
             )
         self.assertEqual(avg, 650)
 
     def test_sum_manager(self):
-        year = datetime.datetime.now(pytz.utc).year
         sum_val = Utilities.objects.sum_field(
             self.user,
-            year,
+            self.cur_year,
             'electricity_consumption'
             )
         self.assertEqual(sum_val, 7800)
 
     def test_max_manager(self):
-        year = datetime.datetime.now(pytz.utc).year
         max_val = Utilities.objects.max_field(
             self.user,
-            year,
+            self.cur_year,
             'electricity_consumption'
             )
         self.assertEqual(max_val, 1200)
 
     def test_min_manager(self):
-        year = datetime.datetime.now(pytz.utc).year
         min_val = Utilities.objects.min_field(
             self.user,
-            year,
+            self.cur_year,
             'electricity_consumption'
             )
         self.assertEqual(min_val, 100)
 
     def test_values_manager(self):
-        year = datetime.datetime.now(pytz.utc).year
         values = Utilities.objects.values_field(
             self.user,
-            year,
+            self.cur_year,
             'electricity_consumption'
             )
         values_to_equal = [(i, 100.0 * i) for i in range(1, 13)]
         self.assertEqual(values, values_to_equal)
+
+    def test_get_stat_date(self):
+        stat_data = Utilities.objects.get_stat_data(
+            self.user,
+            ['electricity_consumption']
+        )
+        self.assertEqual(
+            stat_data['electricity_consumption'][str(self.cur_year)]['avg'],
+            650
+            )

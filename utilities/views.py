@@ -2,6 +2,7 @@ import datetime
 
 from django.urls import reverse_lazy
 from django.views.generic import (
+    TemplateView,
     CreateView,
     DetailView,
     ListView,
@@ -12,6 +13,16 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from .forms import UtilitiesForm
 from .models import Utilities
+
+
+class HomeView(LoginRequiredMixin, TemplateView):
+    template_name = 'home.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(TemplateView, self).get_context_data(**kwargs)
+        user = self.request.user
+        ctx['utilities'] = Utilities.objects.get_by_owner_year(user, 2019)
+        return ctx
 
 
 class CreateUtilitiesView(LoginRequiredMixin, CreateView):
