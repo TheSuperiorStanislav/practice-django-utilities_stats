@@ -1,6 +1,9 @@
 import datetime
+import json
 
 from django.urls import reverse_lazy
+from django.utils.safestring import mark_safe
+from django.template.defaulttags import register
 from django.views.generic import (
     TemplateView,
     CreateView,
@@ -15,13 +18,38 @@ from .forms import UtilitiesForm
 from .models import Utilities
 
 
+# Custom tag for dict
+@register.filter
+def get_item(dictionary, key):
+    return dictionary.get(key)
+
+
+@register.filter
+def format_field(field):
+    return field.replace('_', ' ').capitalize().replace('Hws', 'HWS')
+
+
+@register.filter(is_safe=True)
+def js(obj):
+    return mark_safe(json.dumps(obj))
+
+
 class HomeView(LoginRequiredMixin, TemplateView):
     template_name = 'home.html'
 
     def get_context_data(self, **kwargs):
         ctx = super(TemplateView, self).get_context_data(**kwargs)
         user = self.request.user
-        ctx['utilities'] = Utilities.objects.get_by_owner_year(user, 2019)
+        ctx['stat_data'] = Utilities.objects.get_stat_data(
+            user,
+            [
+                'underpayment',
+                'hws_cold_water_consumption',
+                'cold_water_consumption',
+                'sewage_consumption',
+                'electricity_consumption',
+            ]
+        )
         return ctx
 
 

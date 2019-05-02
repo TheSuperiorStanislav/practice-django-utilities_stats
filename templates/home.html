@@ -1,4 +1,67 @@
 {% extends 'base.html' %}
 {% block content %}
-{{ utilities }}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" integrity="sha256-iq5ygGJ7021Pi7H5S+QAUXCPUfaBzfqeplbg/KlEssg=" crossorigin="anonymous" /><script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js" integrity="sha256-JuQeAGbk9rG/EoRMixuy5X8syzICcvB0dj3KindZkY0=" crossorigin="anonymous"></script>
+
+<div class="container-fluid" style="margin-top: 1em;">
+    {% for field, years in stat_data.items  %}
+        <h2>{{ field|format_field }}</h2> 
+        <ul class="nav nav-pills">
+            {% for year in years %}
+            <li class="nav-item">
+                <a class="nav-link text-white" data-toggle="pill" href="#{{ field }}_{{ year }}">{{ year }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+        <div class="tab-content" style="margin-bottom: 1em;">
+            {% for year, data in years.items %}
+                <div class="tab-pane container-fluid bg-dark fade" id="{{ field }}_{{ year }}" style="padding: 1em .5em;">
+                    <p>Avg: {{ data|get_item:'avg' }}</p>
+                    <p>Sum: {{ data|get_item:'sum' }}</p>
+                    <p>Max: {{ data|get_item:'max' }}</p>
+                    <p>Min: {{ data|get_item:'min' }}</p>
+                    <div id="{{ field }}_{{ year }}_visualization">
+
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+</div>
+<script type="text/javascript">
+    $('document').ready(() => {
+        $(".nav-item:first-child .nav-link").toggleClass("active")
+        $(".tab-pane:first-child").toggleClass("active")
+        $(".tab-pane:first-child").toggleClass("fade")
+        var stat_data = JSON.parse('{{ stat_data|js }}')
+        for (var field in stat_data) {
+            for (year in stat_data[field]){
+                values = stat_data[field][year]["values"]
+                var graphItems = [] 
+                for (var key in stat_data[field][year]["values"]){
+                    const formatX = `${year}-${values[key][0]}-1` 
+                    graphItems.push({'x': formatX,'y': values[key][1]})
+                }
+                var container = document.getElementById(`${field}_${year}_visualization`)
+                var dataset = new vis.DataSet(graphItems);
+                var options = {
+                    start: `${year}-01-1`,
+                    end: `${year}-12-31`,
+                    zoomable: false,
+                    moveable: false,
+                    drawPoints: {
+                            style: 'circle'
+                    },
+                    shaded: {
+                        orientation: 'bottom'
+                    },
+                    showMinorLabels: false,
+                    showCurrentTime: false,
+                };
+                var graph2d = new vis.Graph2d(container, dataset, options);
+                console.log(graphItems)
+            }
+        }
+    });
+</script>
 {% endblock content %}

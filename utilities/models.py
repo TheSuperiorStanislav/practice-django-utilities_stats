@@ -15,8 +15,8 @@ class UtilitiesManager(models.Manager):
         return self.filter(owner=owner, date__year=year).order_by('date')
 
     def avg_field(self, owner, year, field):
-        return self.get_by_owner_year(owner, year).aggregate(
-            Avg(field))['%s__avg' % field]
+        return round(self.get_by_owner_year(owner, year).aggregate(
+            Avg(field))['%s__avg' % field], 3)
 
     def sum_field(self, owner, year, field):
         return self.get_by_owner_year(owner, year).aggregate(
@@ -31,7 +31,7 @@ class UtilitiesManager(models.Manager):
             Min(field))['%s__min' % field]
 
     def values_field(self, owner, year, field):
-        return [(query['date'].month, query[field])
+        return [(query['date'].month, round(query[field], 3))
                 for query in self.get_by_owner_year(owner, year)
                 .values('date', field)]
 
@@ -174,7 +174,7 @@ class Utilities(models.Model):
     cold_water = models.FloatField(
         _('Cold Water'),
         null=False,
-        blank=False,[self.cur_year
+        blank=False,
         help_text=price_help_text,
         validators=[validate_price],
     )
