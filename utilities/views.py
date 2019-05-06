@@ -18,6 +18,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .forms import UtilitiesForm
 from .models import Utilities
 
+from celery import group
+from core.tasks import get_field_data
 
 # Custom tag for dict
 @register.filter
@@ -35,13 +37,32 @@ def js(obj):
     return mark_safe(json.dumps(obj))
 
 
+def get_stat_data(owner, fields):
+    years_query_set = Utilities.objects.filter(owner=owner).distinct(
+            'date__year'
+            ).values_list(
+                'date__year', flat=True)
+    years = [year for year in years_query_set][::-1]
+
+    stat_data = {field: {} for field in fields}
+    job = group([
+        get_field_data.s(owner.pk, field, years)
+        for field in fields
+    ])
+    result = job.apply_async()
+    data = result.join()
+    for pair in data:
+        stat_data[pair[0]] = pair[1]
+    return stat_data
+
+
 class HomeView(LoginRequiredMixin, TemplateView):
     template_name = 'home.html'
 
     def get_context_data(self, **kwargs):
         ctx = super(TemplateView, self).get_context_data(**kwargs)
         user = self.request.user
-        ctx['stat_data'] = Utilities.objects.get_stat_data(
+        ctx['stat_data'] = get_stat_data(
             user,
             [
                 'underpayment',

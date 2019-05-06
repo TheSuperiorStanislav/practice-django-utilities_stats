@@ -35,27 +35,6 @@ class UtilitiesManager(models.Manager):
                 for query in self.get_by_owner_year(owner, year)
                 .values('date', field)]
 
-    def get_stat_data(self, owner, fields):
-        years_query_set = self.filter(owner=owner).distinct(
-                'date__year'
-                ).values_list(
-                    'date__year', flat=True)
-        years = [year for year in years_query_set][::-1]
-        stat_data = {}
-        for field in fields:
-            field_data = {}
-            for year in years:
-                year_data = {
-                    'avg': self.avg_field(owner, year, field),
-                    'sum': self.sum_field(owner, year, field),
-                    'max': self.max_field(owner, year, field),
-                    'min': self.min_field(owner, year, field),
-                    'values': self.values_field(owner, year, field),
-                }
-                field_data[str(year)] = year_data
-            stat_data[field] = field_data
-        return stat_data
-
 
 class Utilities(models.Model):
     price_help_text = "Required. Only numbers greater than zero"

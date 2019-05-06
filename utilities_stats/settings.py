@@ -77,6 +77,10 @@ TEMPLATES = [
 WSGI_APPLICATION = 'utilities_stats.wsgi.application'
 
 
+# Celery config
+BROKER_URL = 'amqp://localhost'
+CELERY_RESULT_BACKEND = 'amqp://localhost'
+
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
@@ -93,6 +97,7 @@ DATABASES = {
 
 # Custom user model
 AUTH_USER_MODEL = 'users.UtilitiesUser'
+
 LOGIN_URL = 'users:login'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'

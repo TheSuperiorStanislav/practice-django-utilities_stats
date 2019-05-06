@@ -11,6 +11,7 @@ flake8 = "*"
 django = "*"
 psycopg2 = "*"
 django-crispy-forms = "*"
+celery = "*"
 
 [requires]
 python_version = "3.6"
