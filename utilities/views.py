@@ -107,6 +107,7 @@ class ListUtilitiesView(LoginRequiredMixin, ListView):
     model = Utilities
     template_name = 'utilities_list.html'
     context_object_name = 'utilities_list'
+    paginate_by = 6
 
     def get_queryset(self):
         return Utilities.objects.filter(
