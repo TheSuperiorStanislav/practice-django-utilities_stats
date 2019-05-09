@@ -6,7 +6,7 @@
 
 {% block content %}
 <div class="container-fluid">
-    <h2 style="margin: 1em .5em;">Add Utilities Entry</h2>
+    <h2 class="form-header">Add Utilities Entry</h2>
     <form method="post">
       {% csrf_token %}
       {{ form|crispy }}
