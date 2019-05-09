@@ -16,7 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from rest_framework import routers
+
+from api.views import UserViewSet, UtilitiesViewSet
 from utilities.views import HomeView
+
+
+router = routers.DefaultRouter()
+router.register(r'users', UserViewSet)
+router.register(r'utilities', UtilitiesViewSet)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,4 +33,9 @@ urlpatterns = [
     path('users/', include('users.urls')),
     path('utilities/', include('utilities.urls')),
     path('', HomeView.as_view(), name='home'),
+    path('api/', include(router.urls)),
+    path(
+        'api/auth/',
+        include('rest_framework.urls', namespace='rest_framework')
+    ),
 ]

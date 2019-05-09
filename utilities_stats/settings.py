@@ -26,7 +26,8 @@ SECRET_KEY = get_env_variable('SECRET_KEY_UTILITIES_STATS')
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '192.168.1.33'
+    '192.168.1.33',
+    '127.0.0.1',
 ]
 
 # Application definition
@@ -40,9 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
     'utilities.apps.UtilitiesConfig',
+    'api.apps.ApiConfig',
 
     # 3rd Party
     'crispy_forms',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

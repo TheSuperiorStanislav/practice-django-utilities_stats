@@ -50,7 +50,8 @@ class Utilities(models.Model):
         auto_now_add=True,
         null=False)
     date_last_edit = models.DateTimeField(
-        null=False)
+        auto_now=True
+        )
 
     underpayment = models.FloatField(
         _('Underpayment'),

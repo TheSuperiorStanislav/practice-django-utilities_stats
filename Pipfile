@@ -12,6 +12,7 @@ django = "*"
 psycopg2 = "*"
 django-crispy-forms = "*"
 celery = "*"
+djangorestframework = "*"
 
 [requires]
 python_version = "3.6"

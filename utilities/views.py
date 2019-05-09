@@ -1,6 +1,4 @@
-import datetime
 import json
-import pytz
 
 from django.urls import reverse_lazy
 from django.utils.safestring import mark_safe
@@ -89,7 +87,6 @@ class CreateUtilitiesView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         owner = self.request.user
         form.instance.owner = owner
-        form.instance.date_last_edit = datetime.datetime.now(pytz.utc)
 
         underpayment = form.instance.underpayment
         amount_to_pay = form.instance.amount_to_pay
@@ -130,8 +127,6 @@ class EditUtilitiesView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     template_name = 'utilities_edit.html'
 
     def form_valid(self, form):
-        form.instance.date_last_edit = datetime.datetime.now()
-
         underpayment = form.instance.underpayment
         amount_to_pay = form.instance.amount_to_pay
         payments_last_mouth = form.instance.payments_last_mouth
