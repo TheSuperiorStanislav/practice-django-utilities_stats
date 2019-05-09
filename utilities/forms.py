@@ -2,6 +2,7 @@ from django import forms
 from django.forms import ModelForm
 
 from .models import Utilities
+from .utils import is_data_valid, is_date_valid
 
 form_fields = [
     'date',
@@ -44,3 +45,23 @@ class UtilitiesForm(ModelForm):
         widgets = {
             'date': DateInput(),
         }
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super(UtilitiesForm, self).__init__(*args, **kwargs)
+
+    def clean_date(self):
+        date = self.cleaned_data['date']
+        if not is_date_valid(self.user, date):
+            msg = u'This entry already exists!'
+            raise forms.ValidationError(msg)
+
+        return date
+
+    def clean(self):
+        cleaned_data = super().clean()
+
+        if is_data_valid(cleaned_data):
+            raise forms.ValidationError(
+                    'Amount to pay != sum(services price)',
+                )

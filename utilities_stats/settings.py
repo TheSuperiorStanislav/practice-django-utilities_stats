@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
     'utilities.apps.UtilitiesConfig',
-    'api.apps.ApiConfig',
 
     # 3rd Party
     'crispy_forms',

@@ -84,6 +84,11 @@ class CreateUtilitiesView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('utilities:list')
     template_name = 'utilities_create.html'
 
+    def get_form_kwargs(self):
+        kwargs = super(CreateUtilitiesView, self).get_form_kwargs()
+        kwargs.update({'user': self.request.user})
+        return kwargs
+
     def form_valid(self, form):
         owner = self.request.user
         form.instance.owner = owner
