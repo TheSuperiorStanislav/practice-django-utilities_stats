@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -98,7 +97,7 @@ DATABASES = {
 # Custom user model
 AUTH_USER_MODEL = 'users.UtilitiesUser'
 
-LOGIN_URL = 'users:login'
+LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
@@ -119,6 +118,15 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# E-mail settings
+DEFAULT_FROM_EMAIL = "django@utilities-stats.com"
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = get_env_variable('SENDGRID_PASS')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 
 # Internationalization

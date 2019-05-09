@@ -8,6 +8,10 @@ from core.validators import validate_norm
 class UtilitiesUser(AbstractUser):
     price_help_text = "Required. Only numbers greater than zero"
 
+    email = models.EmailField(
+        _('email address'),
+        unique=True,)
+
     hws_cold_water_norm = models.FloatField(
         _('HWS Cold Water Norm'),
         null=True,

@@ -7,7 +7,10 @@ class UtilitiesUserCreationForm(UserCreationForm):
 
     class Meta(UserCreationForm.Meta):
         model = UtilitiesUser
-        fields = UserCreationForm.Meta.fields
+        fields = [
+            'email',
+            'username',
+        ]
 
 
 class UtilitiesUserChangeForm(UserChangeForm):
