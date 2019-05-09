@@ -2,8 +2,8 @@
 {% block content %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
-
-<div class="container-fluid" style="margin-top: 1em;">
+<div class="container-fluid" style="margin-top: 1em;" align="center">
+    {% if not is_stat_data_empty %}
     {% for field, years in stat_data.items  %}
         <h2>{{ field|format_field }}</h2> 
         <ul class="nav nav-pills">
@@ -20,13 +20,15 @@
                     <p>Sum: {{ data|get_item:'sum' }}</p>
                     <p>Max: {{ data|get_item:'max' }}</p>
                     <p>Min: {{ data|get_item:'min' }}</p>
-                    <canvas id="{{ field }}_{{ year }}_visualization">
-
-                    </canvas>
+                    <canvas id="{{ field }}_{{ year }}_visualization"></canvas>
                 </div>
             {% endfor %}
         </div>
     {% endfor %}
+    {% else %}
+    <h2>No data to work with.</h2>
+    <a href="{% url 'utilities:create' %}" class="btn btn-success" role="button">Add Entry</a>
+    {% endif %}
 </div>
 <script type="text/javascript">
     $('document').ready(() => {

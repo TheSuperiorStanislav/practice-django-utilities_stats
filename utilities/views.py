@@ -26,7 +26,7 @@ from core.tasks import get_field_data
 def get_item(dictionary, key):
     return dictionary.get(key)
 
-
+# Custom tag to format field
 @register.filter
 def format_field(field):
     return field.replace('_', ' ').capitalize().replace('Hws', 'HWS')
@@ -56,13 +56,17 @@ def get_stat_data(owner, fields):
     return stat_data
 
 
+def is_stat_data_empty(stat_data):
+    return all(value == {} for value in stat_data.values())
+
+
 class HomeView(LoginRequiredMixin, TemplateView):
     template_name = 'home.html'
 
     def get_context_data(self, **kwargs):
         ctx = super(TemplateView, self).get_context_data(**kwargs)
         user = self.request.user
-        ctx['stat_data'] = get_stat_data(
+        stat_data = get_stat_data(
             user,
             [
                 'underpayment',
@@ -72,6 +76,8 @@ class HomeView(LoginRequiredMixin, TemplateView):
                 'electricity_consumption',
             ]
         )
+        ctx['stat_data'] = stat_data
+        ctx['is_stat_data_empty'] = is_stat_data_empty(stat_data)
         return ctx
 
 
