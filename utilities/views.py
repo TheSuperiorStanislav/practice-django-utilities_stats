@@ -69,7 +69,7 @@ class HomeView(LoginRequiredMixin, TemplateView):
         stat_data = get_stat_data(
             user,
             [
-                'underpayment',
+                'amount_to_pay',
                 'hws_cold_water_consumption',
                 'cold_water_consumption',
                 'sewage_consumption',
