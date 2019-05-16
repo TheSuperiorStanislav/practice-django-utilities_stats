@@ -95,7 +95,7 @@ DATABASES = {
         'NAME': 'utilities_stats',
         'USER': get_env_variable('DB_USER'),
         'PASSWORD': get_env_variable('DB_PASSWORD'),
-        'HOST': 'localhost',
+        'HOST': get_env_variable('DB_HOST'),
         'PORT': '',
     }
 }
