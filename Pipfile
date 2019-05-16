@@ -13,6 +13,7 @@ psycopg2 = "*"
 django-crispy-forms = "*"
 celery = "*"
 djangorestframework = "*"
+whitenoise = "*"
 
 [requires]
 python_version = "3.6"
