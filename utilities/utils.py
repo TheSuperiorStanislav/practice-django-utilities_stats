@@ -1,7 +1,7 @@
 from utilities.models import Utilities
 
 
-def is_data_valid(data):
+def is_data_validation_error(data):
     not_service = [
         'owner',
         'date',
@@ -18,12 +18,13 @@ def is_data_valid(data):
         ]), 2)
 
     if amount_to_pay != data.get('amount_to_pay'):
-        return False
+        return 'Amount to pay(%r) != Services price(%r)' % (
+            data.get('amount_to_pay'),
+            amount_to_pay,
+            )
 
-    return True
 
-
-def is_date_valid(owner, value):
+def is_date_validation_error(owner, value):
     month = value.month
     year = value.year
     utilities_with_same_date = Utilities.objects.filter(
@@ -33,5 +34,4 @@ def is_date_valid(owner, value):
     )
 
     if utilities_with_same_date:
-        return False
-    return True
+        return utilities_with_same_date[0]

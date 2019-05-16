@@ -2,7 +2,7 @@ from django import forms
 from django.forms import ModelForm
 
 from .models import Utilities
-from .utils import is_data_valid, is_date_valid
+from .utils import is_data_validation_error, is_date_validation_error
 
 form_fields = [
     'date',
@@ -52,17 +52,15 @@ class UtilitiesForm(ModelForm):
 
     def clean_date(self):
         date = self.cleaned_data['date']
-        if not is_date_valid(self.user, date):
-            msg = u'This entry already exists!'
+        error = is_date_validation_error(self.user, date)
+        if error:
+            msg = u'This entry(%s) already exists!' % (error)
             raise forms.ValidationError(msg)
 
         return date
 
     def clean(self):
         cleaned_data = super().clean()
-
-        if not is_data_valid(cleaned_data):
-            print('error')
-            raise forms.ValidationError(
-                    'Amount to pay != sum(services price)',
-                )
+        error = is_data_validation_error(cleaned_data)
+        if error:
+            raise forms.ValidationError(error)
