@@ -83,8 +83,8 @@ WSGI_APPLICATION = 'utilities_stats.wsgi.application'
 
 
 # Celery config
-BROKER_URL = 'amqp://localhost'
-CELERY_RESULT_BACKEND = 'amqp://localhost'
+BROKER_URL = os.environ.get('CLOUDAMQP_URL')
+CELERY_RESULT_BACKEND = 'amqp'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
