@@ -131,6 +131,11 @@ class EditUtilitiesView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     success_url = reverse_lazy('utilities:list')
     template_name = 'utilities_edit.html'
 
+    def get_form_kwargs(self):
+        kwargs = super(EditUtilitiesView, self).get_form_kwargs()
+        kwargs.update({'user': self.request.user})
+        return kwargs
+
     def form_valid(self, form):
         underpayment = form.instance.underpayment
         amount_to_pay = form.instance.amount_to_pay
