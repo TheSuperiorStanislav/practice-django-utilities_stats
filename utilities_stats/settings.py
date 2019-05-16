@@ -92,10 +92,10 @@ CELERY_RESULT_BACKEND = 'amqp://localhost'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'utilities_stats',
-        'USER': get_env_variable('DB_USER'),
-        'PASSWORD': get_env_variable('DB_PASSWORD'),
-        'HOST': get_env_variable('DB_HOST'),
+        'NAME': get_env_variable('DB_NAME_UTILITIES_STATS'),
+        'USER': get_env_variable('DB_USER_UTILITIES_STATS'),
+        'PASSWORD': get_env_variable('DB_PASSWORD_UTILITIES_STATS'),
+        'HOST': get_env_variable('DB_HOST_UTILITIES_STATS'),
         'PORT': '',
     }
 }
@@ -130,7 +130,7 @@ DEFAULT_FROM_EMAIL = "django@utilities-stats.com"
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = get_env_variable('SENDGRID_PASS')
+EMAIL_HOST_PASSWORD = get_env_variable('SENDGRID_PASS_UTILITIES_STATS')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
