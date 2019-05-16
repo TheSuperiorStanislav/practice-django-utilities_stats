@@ -11,11 +11,12 @@ def is_data_valid(data):
         'to_pay'
     ]
 
-    amount_to_pay = sum([
+    amount_to_pay = round(sum([
         data.get(key)
         for key in data.keys()
         if 'consumption' not in key and key not in not_service
-    ])
+        ]), 2)
+
     if amount_to_pay != data.get('amount_to_pay'):
         return False
 
