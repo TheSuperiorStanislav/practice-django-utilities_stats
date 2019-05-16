@@ -26,6 +26,7 @@ SECRET_KEY = get_env_variable('SECRET_KEY_UTILITIES_STATS')
 DEBUG = get_env_variable('DEBUG')
 
 ALLOWED_HOSTS = [
+    '.herokuapp.com',
     '192.168.1.33',
     '127.0.0.1',
 ]
