@@ -7,7 +7,8 @@ def is_data_valid(data):
         'date',
         'underpayment',
         'amount_to_pay',
-        'payments_last_mouth'
+        'payments_last_mouth',
+        'to_pay'
     ]
 
     amount_to_pay = sum([
