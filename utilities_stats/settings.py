@@ -23,9 +23,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = get_env_variable('SECRET_KEY_UTILITIES_STATS')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = get_env_variable('DEBUG')
 
 ALLOWED_HOSTS = [
+    'https://utilities-stats.herokuapp.com/'
     '192.168.1.33',
     '127.0.0.1',
 ]
