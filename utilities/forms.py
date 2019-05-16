@@ -61,7 +61,8 @@ class UtilitiesForm(ModelForm):
     def clean(self):
         cleaned_data = super().clean()
 
-        if is_data_valid(cleaned_data):
+        if not is_data_valid(cleaned_data):
+            print('error')
             raise forms.ValidationError(
                     'Amount to pay != sum(services price)',
                 )
