@@ -8,7 +8,7 @@
     {% if not is_stat_data_empty %}
     {% for field, years in stat_data.items  %}
         <h2>{{ field|format_field }}</h2> 
-        <ul class="nav nav-pills">
+        <ul class="nav nav-tabs">
             {% for year in years %}
             <li class="nav-item">
                 <a class="nav-link text-white" data-toggle="pill" href="#{{ field }}_{{ year }}">{{ year }}</a>
@@ -17,7 +17,7 @@
         </ul>
         <div class="tab-content" style="margin-bottom: 1em;">
             {% for year, data in years.items %}
-                <div class="tab-pane container-fluid bg-dark fade" id="{{ field }}_{{ year }}" style="padding: 1em .5em;">
+                <div class="tab-pane container-fluid fade" id="{{ field }}_{{ year }}" style="padding: 1em .5em;">
                     <p>Avg: {{ data|get_item:'avg' }}</p>
                     <p>Sum: {{ data|get_item:'sum' }}</p>
                     <p>Max: {{ data|get_item:'max' }}</p>

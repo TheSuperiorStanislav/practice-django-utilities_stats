@@ -4,25 +4,27 @@
 
 {% block content %}
 <div class="container-fluid">
-    <div class="card" style="margin: 1em 0;">
-        <div class="card-body text-dark text-center">
+    <div class="card text-white bg-primary" style="margin: 1em 0;">
+        <div class="card-body">
             <h4 class="card-title">User: {{ utilities_user.username }}</h4>
             <p class="card-text">Full name: {{ utilities_user.first_name }} {{ utilities_user.last_name }}</p>
             <p class="card-text">E-mail: {{ utilities_user.email }}</p>
             <p class="card-text">Date joined: {{ utilities_user.date_joined }}</p>
             <p class="card-text">Last login: {{ utilities_user.last_login }}</p>
             {% if can_edit %}
-            <a href="{% url 'users:edit' utilities_user.username %}" class="btn btn-success">
-                Edit Info
-            </a>
-            <a href="{% url 'password_change' %}" class="btn btn-success">
-                Change password
-            </a>
+            <div class="btn-group">
+                <a href="{% url 'users:edit' utilities_user.username %}" class="btn btn-success">
+                    Edit Info
+                </a>
+                <a href="{% url 'password_change' %}" class="btn btn-success">
+                    Change password
+                </a>
+            </div>
             {% endif %}
         </div>
     </div>
     <div class="table-responsive" style="margin: 1em 0;">
-        <table class="table table-dark table-striped">
+        <table class="table table-striped text-white">
             <thead>
                 <tr>
                     <th>Servises</th>
