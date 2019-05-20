@@ -51,20 +51,28 @@ def createUtilitiesEntry(user, month, year):
 
 class UtilitiesManagerTests(TestCase):
 
-    def setUp(self):
-        self.user = UtilitiesUser.objects.create_user(
+    @classmethod
+    def setUpTestData(cls):
+        user = UtilitiesUser.objects.create_user(
             username='testuser',
             email='test@email.com',
             password='secret'
         )
 
-        self.cur_year = datetime.datetime.now(pytz.utc).year
+        cur_year = datetime.datetime.now(pytz.utc).year
 
         for month in range(1, 13):
-            createUtilitiesEntry(self.user, month, self.cur_year)
+            createUtilitiesEntry(user, month, cur_year)
         for year in range(2015, 2019):
             for month in range(1, 13):
-                createUtilitiesEntry(self.user, month, year)
+                createUtilitiesEntry(user, month, year)
+
+    def setUp(self):
+        self.user = UtilitiesUser.objects.get(
+            username='testuser'
+        )
+
+        self.cur_year = datetime.datetime.now(pytz.utc).year
 
     def test_string_representation(self):
         utilities = Utilities(date=datetime.datetime.now(pytz.utc))
@@ -115,20 +123,28 @@ class UtilitiesManagerTests(TestCase):
 
 class UtilitiesViewTests(TestCase):
 
-    def setUp(self):
-        self.user = UtilitiesUser.objects.create_user(
+    @classmethod
+    def setUpTestData(cls):
+        user = UtilitiesUser.objects.create_user(
             username='testuser',
             email='test@email.com',
             password='secret'
         )
 
-        self.cur_year = datetime.datetime.now(pytz.utc).year
+        cur_year = datetime.datetime.now(pytz.utc).year
 
         for month in range(1, 13):
-            createUtilitiesEntry(self.user, month, self.cur_year)
-        for year in range(2015, 2019):
+            createUtilitiesEntry(user, month, cur_year)
+        for year in range(2000, 2005):
             for month in range(1, 13):
-                createUtilitiesEntry(self.user, month, year)
+                createUtilitiesEntry(user, month, year)
+
+    def setUp(self):
+        self.user = UtilitiesUser.objects.get(
+            username='testuser',
+        )
+
+        self.cur_year = datetime.datetime.now(pytz.utc).year
 
     @override_settings(CELERY_EAGER_PROPAGATES_EXCEPTIONS=True,
                        CELERY_ALWAYS_EAGER=True,
