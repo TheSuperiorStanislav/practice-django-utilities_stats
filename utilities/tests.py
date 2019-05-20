@@ -10,7 +10,9 @@ from django.utils.formats import get_format
 from .views import get_stat_data
 
 from .models import Utilities
+from .forms import UtilitiesForm
 from users.models import UtilitiesUser
+from api.serializers import UtilitiesSerializer
 
 
 def createUtilitiesEntry(user, month, year):
@@ -58,11 +60,11 @@ class UtilitiesManagerTests(TestCase):
 
         self.cur_year = datetime.datetime.now(pytz.utc).year
 
-        for mouth in range(1, 13):
-            createUtilitiesEntry(self.user, mouth, self.cur_year)
+        for month in range(1, 13):
+            createUtilitiesEntry(self.user, month, self.cur_year)
         for year in range(2015, 2019):
-            for mouth in range(1, 13):
-                createUtilitiesEntry(self.user, mouth, year)
+            for month in range(1, 13):
+                createUtilitiesEntry(self.user, month, year)
 
     def test_string_representation(self):
         utilities = Utilities(date=datetime.datetime.now(pytz.utc))
@@ -122,11 +124,11 @@ class UtilitiesViewTests(TestCase):
 
         self.cur_year = datetime.datetime.now(pytz.utc).year
 
-        for mouth in range(1, 13):
-            createUtilitiesEntry(self.user, mouth, self.cur_year)
+        for month in range(1, 13):
+            createUtilitiesEntry(self.user, month, self.cur_year)
         for year in range(2015, 2019):
-            for mouth in range(1, 13):
-                createUtilitiesEntry(self.user, mouth, year)
+            for month in range(1, 13):
+                createUtilitiesEntry(self.user, month, year)
 
     @override_settings(CELERY_EAGER_PROPAGATES_EXCEPTIONS=True,
                        CELERY_ALWAYS_EAGER=True,
@@ -147,3 +149,138 @@ class UtilitiesViewTests(TestCase):
             stat_data['electricity_consumption'][str(self.cur_year)]['avg'],
             650
             )
+
+
+class UtilitiesFormAndSerializerTest(TestCase):
+
+    @classmethod
+    def setUpTestData(cls):
+        user = UtilitiesUser.objects.create_user(
+            username='testuser',
+            email='test@email.com',
+            password='secret'
+        )
+        cur_year = datetime.datetime.now(pytz.utc).year
+        createUtilitiesEntry(user, 1, cur_year)
+        createUtilitiesEntry(user, 2, cur_year)
+
+    def setUp(self):
+        self.user = UtilitiesUser.objects.get(
+            username='testuser',
+        )
+
+        cur_year = datetime.datetime.now(pytz.utc).year
+
+        self.date1 = datetime.datetime.now(pytz.utc).replace(
+            month=1,
+            year=cur_year
+        )
+        self.date2 = datetime.datetime.now(pytz.utc).replace(
+            month=2,
+            year=cur_year
+        )
+
+        self.data = {
+            'owner': self.user,
+            'date': self.date1,
+            'date_last_edit': datetime.datetime.now(pytz.utc),
+            'underpayment': 100.0,
+            'amount_to_pay': 100.0 * 17.0,
+            'payments_last_mouth': 100.0,
+            'to_pay': 100.0,
+            'housing_stock': 100.0,
+            'hws_thermal_energy_cp': 100.0,
+            'hws_cold_water_cp': 100.0,
+            'cold_water_cp': 100.0,
+            'sewage_cp': 100.0,
+            'electricity_cp': 100.0,
+            'special_account_for_overhaul': 100.0,
+            'home_heating': 100.0,
+            'hws_thermal_energy': 100.0,
+            'hws_cold_water': 100.0,
+            'cold_water': 100.0,
+            'sewage': 100.0,
+            'garbage_service': 100.0,
+            'electricity': 100.0,
+            'intercom_maintenance': 100.0,
+            'gate_maintenance': 100.0,
+            'cctv_maintenance': 100.0,
+            'hws_cold_water_consumption': 100.0,
+            'cold_water_consumption': 100.0,
+            'sewage_consumption': 100.0,
+            'electricity_consumption': 100.0,
+        }
+
+    def test_form_valid_exisiting_date(self):
+
+        form = UtilitiesForm(
+            user=self.user,
+            data=self.data
+            )
+        self.assertFalse(form.is_valid())
+
+    def test_edit_form_valid_edit_date(self):
+        form = UtilitiesForm(
+            user=self.user,
+            pk=1,
+            data=self.data
+            )
+        self.assertTrue(form.is_valid())
+
+    def test_edit_form_valid_exisiting_date(self):
+        data = self.data
+        data['date'] = self.date2
+        form = UtilitiesForm(
+            user=self.user,
+            pk=1,
+            data=self.data
+            )
+        self.assertFalse(form.is_valid())
+
+    def test_form_valid_amount_to_pay(self):
+        data = self.data
+        data['amount_to_pay'] = 1
+        form = UtilitiesForm(
+            user=self.user,
+            data=data
+            )
+        self.assertFalse(form.is_valid())
+
+    def test_serializer_valid_exisiting_date(self):
+        data = self.data
+        data['owner'] = 'http://127.0.0.1/api/users/%s/' % (self.user.pk)
+        data['date'] = data['date'].strftime('%Y-%m-%d')
+        serializer = UtilitiesSerializer(
+            data=data
+            )
+        self.assertFalse(serializer.is_valid())
+
+    def test_edit_serializer_valid_edit_date(self):
+        data = self.data
+        data['owner'] = 'http://127.0.0.1/api/users/%s/' % (self.user.pk)
+        data['date'] = data['date'].strftime('%Y-%m-%d')
+        serializer = UtilitiesSerializer(
+            Utilities.objects.get(pk=1),
+            data=data
+            )
+        self.assertTrue(serializer.is_valid())
+
+    def test_edit_serializer_valid_exisiting_date(self):
+        data = self.data
+        data['owner'] = 'http://127.0.0.1/api/users/%s/' % (self.user.pk)
+        data['date'] = self.date2.strftime('%Y-%m-%d')
+        serializer = UtilitiesSerializer(
+            Utilities.objects.get(pk=1),
+            data=data
+            )
+        self.assertFalse(serializer.is_valid())
+
+    def test_serializer_valid_amount_to_pay(self):
+        data = self.data
+        data['owner'] = 'http://127.0.0.1/api/users/%s/' % (self.user.pk)
+        data['date'] = data['date'].strftime('%Y-%m-%d')
+        data['amount_to_pay'] = 1
+        serializer = UtilitiesSerializer(
+            data=data
+            )
+        self.assertFalse(serializer.is_valid())

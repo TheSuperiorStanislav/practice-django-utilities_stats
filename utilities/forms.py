@@ -48,10 +48,15 @@ class UtilitiesForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
+        self.pk = kwargs.pop('pk', None)
         super(UtilitiesForm, self).__init__(*args, **kwargs)
 
     def clean_date(self):
         date = self.cleaned_data['date']
+        if self.pk:
+            edit_utilities = Utilities.objects.get(pk=self.pk)
+            if date.month == edit_utilities.date.month:
+                return date
         error = is_date_validation_error(self.user, date)
         if error:
             msg = u'This entry(%s) already exists!' % (error)

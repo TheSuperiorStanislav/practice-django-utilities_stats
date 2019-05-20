@@ -134,6 +134,7 @@ class EditUtilitiesView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def get_form_kwargs(self):
         kwargs = super(EditUtilitiesView, self).get_form_kwargs()
         kwargs.update({'user': self.request.user})
+        kwargs.update({'pk': self.get_object().pk})
         return kwargs
 
     def form_valid(self, form):
