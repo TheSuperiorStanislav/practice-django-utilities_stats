@@ -29,7 +29,7 @@ msgstr "Недоплата на начало расчетного периода
 
 #: utilities/models.py:64
 msgid "Amount to pay"
-msgstr "Итого к оплате"
+msgstr "Сумма к оплате за расчетный период"
 
 #: utilities/models.py:71
 msgid "Payments last mouth"
@@ -37,7 +37,7 @@ msgstr "Платежи за расчетный период"
 
 #: utilities/models.py:78
 msgid "To pay"
-msgstr "Сумма к оплате за расчетный период"
+msgstr "Итого к оплате"
 
 #: utilities/models.py:85
 msgid "Housing Stock"
@@ -124,7 +124,7 @@ msgid "Electricity Consumption"
 msgstr "Электричество - потребление"
 
 msgid "amount_to_pay"
-msgstr "Итого к оплате"
+msgstr "Сумма к оплате за расчетный период"
 
 msgid "HWS cold water consumption"
 msgstr "ГВС: Холодная вода - потребление"
