@@ -8,9 +8,9 @@
 
 {% block content %}
 <div class="container">
-  <h2 class="form-header">
+  <h4 class="form-header">
       {% trans 'Edit Utilities'%} {{ utilities }}
-  </h2>
+  </h4>
   <form method="post">
     {% csrf_token %}
     {{ form|crispy }}

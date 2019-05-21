@@ -13,10 +13,10 @@
 		<div class="error-num">
 			<h1>&#128373;404&#128373;</h1>
 			<h2>{% trans 'Page not found' %}</h2>
+			<a class="btn btn-outline-info" href="{% url 'home' %}" >
+				{% trans 'Homepage' %}
+			</a>
 		</div>
-		<a class="btn btn-outline-info" href="{ url 'home'}" >
-			{% trans 'Homepage' %}
-		</a>
 	</div>
 </div>
 {% endblock content %}

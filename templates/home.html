@@ -9,7 +9,7 @@
 <div class="container-fluid" style="margin-top: 1em;" align="center">
     {% if not is_stat_data_empty %}
     {% for field, years in stat_data.items  %}
-        <h2>{{ field|format_field }}</h2> 
+        <h3>{{ field|format_field }}</h3> 
         <ul class="nav nav-tabs">
             {% for year in years %}
             <li class="nav-item">

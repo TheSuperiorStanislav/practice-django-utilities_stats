@@ -13,10 +13,10 @@
 		<div class="error-num">
 			<h1>&#128679; 500 &#128679;</h1>
 			<h2>{% trans 'Something bad happended.' %}</h2>
-		</div>
-		<a class="btn btn-outline-info" href="{ url 'home'}" >
+			<a class="btn btn-outline-info" href="{% url 'home' %}" >
 				{% trans 'Homepage' %}
-		</a>
+			</a>
+		</div>
 	</div>
 </div>
 {% endblock content %}

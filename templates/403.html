@@ -13,10 +13,10 @@
 		<div class="error-num">
 			<h1>&#128695; 403 &#128695;</h1>
 			<h2>{% trans 'You don\'t have rights to do that.' %}</h2>
+			<a class="btn btn-outline-info" href="{% url 'home' %}" >
+				{% trans 'Homepage' %}
+			</a>
 		</div>
-		<a class="btn btn-outline-info" href="{ url 'home'}" >
-			{% trans 'Homepage' %}
-		</a>
 	</div>
 </div>
 {% endblock content %}
