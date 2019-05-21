@@ -1,16 +1,18 @@
 {% extends 'base.html' %}
 
+{% load i18n %}
+
 {% load crispy_forms_tags %}
 
-{% block title %}Add Utilities Entry{% endblock %}
+{% block title %}{% trans 'Add Utilities Entry'%}{% endblock %}
 
 {% block content %}
 <div class="container-fluid">
-    <h2 class="form-header">Add Utilities Entry</h2>
+    <h2 class="form-header">{% trans 'Add Utilities Entry'%}</h2>
     <form method="post">
       {% csrf_token %}
       {{ form|crispy }}
-      <button  class="btn btn-success btn-block" type="submit">Save</button>
+      <button  class="btn btn-outline-success btn-block" type="submit">{% trans 'Save'%}</button>
     </form>
 </div>
 {% endblock content %}

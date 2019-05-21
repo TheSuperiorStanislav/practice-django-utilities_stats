@@ -1,23 +1,25 @@
 {% extends 'base.html' %}
 
-{% block title %}User: {{ utilities_user.username }}{% endblock %}
+{% load i18n %}
+
+{% block title %}{% trans 'User' %}: {{ utilities_user.username }}{% endblock %}
 
 {% block content %}
 <div class="container-fluid">
     <div class="card text-white bg-primary" style="margin: 1em 0;">
         <div class="card-body">
-            <h4 class="card-title">User: {{ utilities_user.username }}</h4>
-            <p class="card-text">Full name: {{ utilities_user.first_name }} {{ utilities_user.last_name }}</p>
+            <h4 class="card-title">{% trans 'User' %}: {{ utilities_user.username }}</h4>
+            <p class="card-text">{% trans 'Full name' %}: {{ utilities_user.first_name }} {{ utilities_user.last_name }}</p>
             <p class="card-text">E-mail: {{ utilities_user.email }}</p>
-            <p class="card-text">Date joined: {{ utilities_user.date_joined }}</p>
-            <p class="card-text">Last login: {{ utilities_user.last_login }}</p>
+            <p class="card-text">{% trans 'Date joined' %}: {{ utilities_user.date_joined }}</p>
+            <p class="card-text">{% trans 'Last login' %}: {{ utilities_user.last_login }}</p>
             {% if can_edit %}
             <div class="btn-group">
                 <a href="{% url 'users:edit' utilities_user.username %}" class="btn btn-success">
-                    Edit Info
+                    {% trans 'Edit Info' %}
                 </a>
                 <a href="{% url 'password_change' %}" class="btn btn-success">
-                    Change password
+                    {% trans 'Change password' %}
                 </a>
             </div>
             {% endif %}
@@ -27,25 +29,25 @@
         <table class="table table-striped text-white">
             <thead>
                 <tr>
-                    <th>Servises</th>
-                    <th>Norm</th>
+                    <th>{% trans 'Servises' %}</th>
+                    <th>{% trans 'Norm' %}</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>HWS: Cold Water</td>
+                    <td>{% trans 'HWS: Cold Water' %}</td>
                     <td>{{ utilities_user.hws_cold_water_norm }}</td>
                 </tr>
                 <tr>
-                    <td>Cold Water</td>
+                    <td>{% trans 'Cold Water' %}</td>
                     <td>{{ utilities_user.cold_water_norm }}</td>
                 </tr>
                 <tr>
-                    <td>Sewage</td>
+                    <td>{% trans 'Sewage' %}</td>
                     <td>{{ utilities_user.sewage_norm }}</td>
                 </tr>
                 <tr>
-                    <td>Electricity</td>
+                    <td>{% trans 'Electricity' %}</td>
                     <td>{{ utilities_user.electricity_norm }}</td>
                 </tr>
             </tbody>

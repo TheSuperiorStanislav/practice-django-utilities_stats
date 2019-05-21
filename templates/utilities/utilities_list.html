@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+
+{% load i18n %}
+
 {% block content %}
 <style>
     .utilities-col {
@@ -10,18 +13,18 @@
         {% for utilities in utilities_list %}
         <div class="col-sm-4 utilities-col">
             <div class="card text-center border-info w-100">
-                <h4 class="card-header bg-info text-white">{{ utilities }}</h3>
+                <h5 class="card-header bg-info text-white">{{ utilities }}</h3>
                 <div class="card-body text-white">
-                    <p class="card-text">Underpayment: {{ utilities.underpayment }}</p>
-                    <p class="card-text">Amount to pay: {{ utilities.amount_to_pay }}</p>
-                    <p class="card-text">Payments last mouth: {{ utilities.payments_last_mouth }}</p>
-                    <h4 class="card-title">To pay: {{ utilities.to_pay }}</h4>
+                    <p class="card-text">{% trans 'Underpayment'%}: {{ utilities.underpayment }}</p>
+                    <p class="card-text">{% trans 'Amount to pay'%}: {{ utilities.amount_to_pay }}</p>
+                    <p class="card-text">{% trans 'Payments last mouth'%}: {{ utilities.payments_last_mouth }}</p>
+                    <h4 class="card-title">{% trans 'To pay'%}: {{ utilities.to_pay }}</h4>
                 </div>
                 <div class="card-footer btn-toolbar">
-                    <a href="{% url 'utilities:detail' utilities.pk %}" class="btn btn-outline-primary btn-block" role="button">More Info</a>
-                    <a href="{% url 'utilities:edit' utilities.pk %}" class="btn btn-outline-success btn-block" role="button">Edit</a>
+                    <a href="{% url 'utilities:detail' utilities.pk %}" class="btn btn-outline-primary btn-block" role="button">{% trans 'More Info'%}</a>
+                    <a href="{% url 'utilities:edit' utilities.pk %}" class="btn btn-outline-success btn-block" role="button">{% trans 'Edit'%}</a>
                     <button type="button" class="btn btn-outline-danger btn-block" data-toggle="modal" data-utilities="{{ utilities }}" data-pk="{{ utilities.pk }}" data-target="#deleteModal">
-                        Delete
+                            {% trans 'Delete'%}
                     </button>
                 </div> 
             </div>
@@ -58,7 +61,7 @@
             <div class="modal-content">
             
                 <div class="modal-header">
-                    <h4 class="modal-title">Delete Entry</h4>
+                    <h4 class="modal-title">{% trans 'Delete Entry'%}</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 
@@ -69,8 +72,8 @@
                 <div class="modal-footer">
                     <form id="delete-form" method="POST">
                         {% csrf_token %}
-                        <input class="btn btn-danger" type="submit" value="Delete">
-                        <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                        <input class="btn btn-danger" type="submit" value="{% trans 'Delete'%}">
+                        <button type="button" class="btn btn-light" data-dismiss="modal">{% trans 'Close'%}</button>
                     </form>
                 </div>
                 
@@ -87,7 +90,7 @@
         //Make delete url
         url = "{% url 'utilities:delete' pk=12345 %}".replace(/12345/, pk.toString());
         //Populate the body
-        $('.modal-body').html(`Are you sure you want to delete Entry for <strong>${utilities}<strong>?`);
+        $('.modal-body').html(`{% trans 'Are you sure you want to delete Entry for'%} <strong>${utilities}<strong>?`);
         //Set action
         $('#delete-form').attr('action', url);;
     });

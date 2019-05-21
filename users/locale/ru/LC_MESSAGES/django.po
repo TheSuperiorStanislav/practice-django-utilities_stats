@@ -1,0 +1,112 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-05-21 06:13+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: users/models.py:12
+msgid "email address"
+msgstr "Email-адрес"
+
+msgid "User"
+msgstr "Пользователь"
+
+msgid "Edit Info"
+msgstr "Редатировать профиль"
+
+msgid "Full name"
+msgstr "ФИО"
+
+msgid "Date joined"
+msgstr "Дата создания аккаунта"
+
+msgid "Last login"
+msgstr "Последняя активность"
+
+msgid "Change password"
+msgstr "Изменить пароль"
+
+msgid "Servises"
+msgstr "Услуги"
+
+msgid "Norm"
+msgstr "Норматив"
+
+msgid "Cold Water Norm"
+msgstr "Норматив холодной воды"
+
+msgid "HWS Cold Water Norm"
+msgstr "Норматив ГВС холодной воды"
+
+msgid "Sewage Norm"
+msgstr "Норматив водоотведения"
+
+msgid "Electricity Norm"
+msgstr "Норматив электричества"
+
+msgid "Required. Only numbers greater than zero"
+msgstr "Обязательно. Только числа больше нуля"
+
+msgid "Edit Profile"
+msgstr "Редактировать профиль"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Password change"
+msgstr "Изменение пароля"
+
+msgid "Password Reset"
+msgstr "Востановление пароля"
+
+msgid "Change my password"
+msgstr "Изменить мой пароль"
+
+msgid "Please enter your old password, for security's sake, and then enter your new password twice so we can verify you typed it in correctly."
+msgstr "Пожалуйста, для безопасности введите свой старый пароль, а затем дважды введите новый пароль, чтобы мы могли проверить, правильно ли вы его ввели."
+
+msgid "Forgotten your password? Enter your email address below, and we'll email instructions for setting a new one."
+msgstr "Забыли свой пароль? Введите адрес электронной почты ниже, и мы вышлем инструкции по настройке нового пароля."
+
+msgid "Email Sent"
+msgstr "Письмо отправлено"
+
+msgid "Check your inbox."
+msgstr "Проверьте свой почтовый ящик."
+
+msgid "We've emailed you instructions for setting your password.You should receive the email shortly!"
+msgstr "Мы отправили вам инструкции по установке пароля по электронной почте. В ближайшее время вы получите электронное письмо!"
+
+msgid "Please enter your new password twice so we can verify you typed it in correctly."
+msgstr "Пожалуйста, введите новый пароль дважды, чтобы мы могли убедиться, что вы ввели его правильно."
+
+msgid "Your password has been set.  You may go ahead and log in now."
+msgstr "Ваш пароль был установлен. Вы можетe войти сейчас."
+
+msgid "Sign Up"
+msgstr "Регистрация"
+
+msgid "Log In"
+msgstr "Войти"
+
+msgid "Forgot your password?"
+msgstr "Забыли пароль?"
+
+msgid "Restore password"
+msgstr "Восстановить пароль"

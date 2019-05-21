@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 
+{% load i18n %}
+
 {% load static %}
+
+{% block title %}&#128695; 403 &#128695;{% endblock %}
 
 {% block content %}
 <link href="{% static 'css/error_page.css' %}" rel="stylesheet">
@@ -8,10 +12,10 @@
 	<div class="error">
 		<div class="error-num">
 			<h1>&#128695; 403 &#128695;</h1>
-			<h2>You don't have rights to do that.</h2>
+			<h2>{% trans 'You don\'t have rights to do that.' %}</h2>
 		</div>
-		<a type="button" class="btn btn-outline-info" href="{ url 'home'}" >
-			Homepage
+		<a class="btn btn-outline-info" href="{ url 'home'}" >
+			{% trans 'Homepage' %}
 		</a>
 	</div>
 </div>

@@ -1,6 +1,7 @@
 import json
 
 from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 from django.utils.safestring import mark_safe
 from django.template.defaulttags import register
 from django.views.generic import (
@@ -27,7 +28,7 @@ def get_item(dictionary, key):
 # Custom tag to format field
 @register.filter
 def format_field(field):
-    return field.replace('_', ' ').capitalize().replace('Hws', 'HWS')
+    return _(field.replace('_', ' ').capitalize().replace('Hws', 'HWS'))
 
 
 @register.filter(is_safe=True)

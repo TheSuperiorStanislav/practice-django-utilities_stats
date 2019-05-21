@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load i18n %}
+
 {% load static %}
 
 {% block content %}
@@ -28,8 +30,8 @@
         </div>
     {% endfor %}
     {% else %}
-    <h2>No data to work with.</h2>
-    <a href="{% url 'utilities:create' %}" class="btn btn-success" role="button">Add Entry</a>
+    <h2>{% trans 'No data to work with.' %}</h2>
+    <a href="{% url 'utilities:create' %}" class="btn btn-outline-success" role="button">{% trans 'Add entry'%}</a>
     {% endif %}
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>

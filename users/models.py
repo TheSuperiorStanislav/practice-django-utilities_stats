@@ -6,7 +6,7 @@ from core.validators import validate_norm
 
 
 class UtilitiesUser(AbstractUser):
-    price_help_text = "Required. Only numbers greater than zero"
+    price_help_text = _("Required. Only numbers greater than zero")
 
     email = models.EmailField(
         _('email address'),

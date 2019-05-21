@@ -37,7 +37,7 @@ class UtilitiesManager(models.Manager):
 
 
 class Utilities(models.Model):
-    price_help_text = "Required. Only numbers greater than zero"
+    price_help_text = _("Required. Only numbers greater than zero")
 
     objects = UtilitiesManager()
     owner = models.ForeignKey(
@@ -45,7 +45,9 @@ class Utilities(models.Model):
         on_delete=models.CASCADE
     )
 
-    date = models.DateField()
+    date = models.DateField(
+        _('Date'),
+    )
     date_added = models.DateTimeField(
         auto_now_add=True,
         null=False)

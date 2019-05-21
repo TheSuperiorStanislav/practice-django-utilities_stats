@@ -1,0 +1,220 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-05-21 06:43+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+msgid "Date"
+msgstr "Дата"
+
+#: utilities/models.py:57
+msgid "Underpayment"
+msgstr "Недоплата на начало расчетного периода"
+
+#: utilities/models.py:64
+msgid "Amount to pay"
+msgstr "Итого к оплате"
+
+#: utilities/models.py:71
+msgid "Payments last mouth"
+msgstr "Платежи за расчетный период"
+
+#: utilities/models.py:78
+msgid "To pay"
+msgstr "Сумма к оплате за расчетный период"
+
+#: utilities/models.py:85
+msgid "Housing Stock"
+msgstr "Содержание жилого фонда"
+
+#: utilities/models.py:92
+msgid "HWS: Thermal energy CP"
+msgstr "ГВС: ТЭ на о/и"
+
+#: utilities/models.py:99
+msgid "HWS: Cold Water CP"
+msgstr "ГВС: Холодная вода на о/и"
+
+#: utilities/models.py:106
+msgid "Cold Water CP"
+msgstr "Холодная вода на о/и"
+
+#: utilities/models.py:113
+msgid "Sewage CP"
+msgstr "Водоотведение на о/и"
+
+#: utilities/models.py:120
+msgid "Electricity CP"
+msgstr "Электричество на о/и"
+
+#: utilities/models.py:127
+msgid "Special account for overhaul"
+msgstr "Спец. счет на кап.  ремонт"
+
+#: utilities/models.py:134
+msgid "Home Heating"
+msgstr "Отопление"
+
+#: utilities/models.py:141
+msgid "HWS: Thermal Energy"
+msgstr "ГВС: ТЭ"
+
+#: utilities/models.py:148
+msgid "HWS: Cold Water"
+msgstr "ГВС: Холодная вода"
+
+#: utilities/models.py:155
+msgid "Cold Water"
+msgstr "Холодная вода"
+
+#: utilities/models.py:162
+msgid "Sewage"
+msgstr "Водоотведение"
+
+#: utilities/models.py:169
+msgid "Garbage service"
+msgstr "Обращение ТКО"
+
+#: utilities/models.py:176
+msgid "Electricity"
+msgstr "Электричество"
+
+#: utilities/models.py:183
+msgid "Intercom Maintenance"
+msgstr "Обслуживание домофона"
+
+#: utilities/models.py:190
+msgid "Gate Maintenance"
+msgstr "Обслуживание шлагбаума"
+
+#: utilities/models.py:197
+msgid "CCTV Maintenance"
+msgstr "Обслуживание видеонаблюдения"
+
+#: utilities/models.py:205
+msgid "HWS: Cold Water Consumption"
+msgstr "ГВС: Холодная вода - потребление"
+
+#: utilities/models.py:212
+msgid "Cold Water Consumption"
+msgstr "Холодная вода - потребление"
+
+#: utilities/models.py:219
+msgid "Sewage Consumption"
+msgstr "Водоотведения - потребление"
+
+#: utilities/models.py:226
+msgid "Electricity Consumption"
+msgstr "Электричество - потребление"
+
+msgid "amount_to_pay"
+msgstr "Итого к оплате"
+
+msgid "HWS cold water consumption"
+msgstr "ГВС: Холодная вода - потребление"
+
+msgid "Cold water consumption"
+msgstr "Холодная вода - потребление"
+
+msgid "Sewage consumption"
+msgstr "Водоотведения - потребление"
+
+msgid "Electricity consumption"
+msgstr "Электричество - потребление"
+
+msgid "No data to work with."
+msgstr "Нет данных для обработки"
+
+msgid "Servises"
+msgstr "Услуги"
+
+msgid "Norm"
+msgstr "Норматив"
+
+msgid "Utilites Check for"
+msgstr "Квитанция за"
+
+msgid "Edit"
+msgstr "Редатировать"
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "Price"
+msgstr "Цена"
+
+msgid "Total"
+msgstr "Итого"
+
+msgid "Consumption"
+msgstr "Потребление"
+
+msgid "More Info"
+msgstr "Посмотреть полностью"
+
+msgid "Delete Entry"
+msgstr "Удалить запись"
+
+msgid "Are you sure you want to delete Entry for"
+msgstr "Вы уверены, что хотите удалить запись за"
+
+msgid "Edit Utilities"
+msgstr "Редактировать запись за"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Utilities:"
+msgstr "Запись:"
+
+msgid "Add Utilities Entry"
+msgstr "Создать новую запись"
+
+msgid "About"
+msgstr "Эбоут"
+
+msgid "Hi Guest"
+msgstr "Привет, гость"
+
+msgid "Hi"
+msgstr "Привет,"
+
+msgid "View account"
+msgstr "Просмотр профиля"
+
+msgid "Add entry"
+msgstr "Добавить запись"
+
+msgid "View all data"
+msgstr "Просмотр всех данных"
+
+msgid "Log Out"
+msgstr "Выйти"
+
+msgid "Umm, well, this is a small project built on Django for collecting and showing utilities checks stats data. Probably useless, made it just to practice Django."
+msgstr "Эмм, ну, это небольшой проект, сделан на Django для сбора и отображения данных статистики квитанци ЖКХ. Наверное, бесполезен, сделал это просто для того, чтобы практиковать Django."
+
+msgid "Homepage"
+msgstr "На главную"
+
+msgid "Something bad happended."
+msgstr "Что-то пошло не так."
+
+msgid "You don't have rights to do that."
+msgstr "У вас нет прав, чтобы сделать это."

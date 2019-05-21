@@ -1,15 +1,18 @@
 {% extends 'base.html' %}
+
+{% load i18n %}
+
 {% block content %}
 <div class="jumbotron jumbotron-fluid bg-info text-white text-center">
     <div class="container">
-        <h1>Utilites Check for {{ utilities }}</h1>      
-        <p>Underpayment: {{ utilities.underpayment }}</p>
-        <p>Amount to pay: {{ utilities.amount_to_pay }}</p>
-        <p>Payments last mouth: {{ utilities.payments_last_mouth }}</p>
-        <h4>To pay: {{ utilities.to_pay }}</h4>
+        <h1>{% trans 'Utilites Check for'%} {{ utilities }}</h1>      
+        <p>{% trans 'Underpayment'%}: {{ utilities.underpayment }}</p>
+        <p>{% trans 'Amount to pay'%}: {{ utilities.amount_to_pay }}</p>
+        <p>{% trans 'Payments last mouth'%}: {{ utilities.payments_last_mouth }}</p>
+        <h4>{% trans 'To pay'%}: {{ utilities.to_pay }}</h4>
         <div class="btn-group">
-            <a href="{% url 'utilities:edit' utilities.pk %}" class="btn btn-success" role="button">Edit</a>
-            <a href='#' class="btn btn-danger" role="button">Delete</a>
+            <a href="{% url 'utilities:edit' utilities.pk %}" class="btn btn-success" role="button">{% trans 'Edit'%}</a>
+            <a href='#' class="btn btn-danger" role="button">{% trans 'Delete'%}</a>
         </div>
     </div>
 </div>
@@ -18,83 +21,83 @@
         <table class="table table-striped text-white">
             <thead>
                 <tr>
-                    <th>Servises</th>
-                    <th>Price</th>
+                    <th>{% trans 'Servises'%}</th>
+                    <th>{% trans 'Price'%}</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Housing Stock</td>
+                    <td>{% trans 'Housing Stock'%}</td>
                     <td>{{ utilities.housing_stock }}</td>
                 </tr>
                 <tr>
-                    <td>HWS: Thermal energy CP</td>
+                    <td>{% trans 'HWS: Thermal energy CP'%}</td>
                     <td>{{ utilities.hws_thermal_energy_cp }}</td>
                 </tr>
                 <tr>
-                    <td>HWS: Cold Water CP</td>
+                    <td>{% trans 'HWS: Cold Water CP'%}</td>
                     <td>{{ utilities.hws_cold_water_cp }}</td>
                 </tr>
                 <tr>
-                    <td>Cold Water CP</td>
+                    <td>{% trans 'Cold Water CP'%}</td>
                     <td>{{ utilities.cold_water_cp }}</td>
                 </tr>
                 <tr>
-                    <td>Sewage CP</td>
+                    <td>{% trans 'Sewage CP'%}</td>
                     <td>{{ utilities.sewage_cp }}</td>
                 </tr>
                 <tr>
-                    <td>Electricity CP</td>
+                    <td>{% trans 'Electricity CP'%}</td>
                     <td>{{ utilities.electricity_cp }}</td>
                 </tr>
                 <tr>
-                    <td>Special account for overhaul</td>
+                    <td>{% trans 'Special account for overhaul'%}</td>
                     <td>{{ utilities.special_account_for_overhaul }}</td>
                 </tr>
                 <tr>
-                    <td>Home Heating</td>
+                    <td>{% trans 'Home Heating'%}</td>
                     <td>{{ utilities.home_heating }}</td>
                 </tr>
                 <tr>
-                    <td>HWS: Thermal energy</td>
+                    <td>{% trans 'HWS: Thermal Energy'%}</td>
                     <td>{{ utilities.hws_thermal_energy }}</td>
                 </tr>
                 <tr>
-                    <td>HWS: Cold Water</td>
+                    <td>{% trans 'HWS: Cold Water'%}</td>
                     <td>{{ utilities.hws_cold_water }}</td>
                 </tr>
                 <tr>
-                    <td>Cold Water</td>
+                    <td>{% trans 'Cold Water'%}</td>
                     <td>{{ utilities.cold_water }}</td>
                 </tr>
                 <tr>
-                    <td>Sewage</td>
+                    <td>{% trans 'Sewage'%}</td>
                     <td>{{ utilities.sewage }}</td>
                 </tr>
                 <tr>
-                    <td>Garbage service</td>
+                    <td>{% trans 'Garbage service'%}</td>
                     <td>{{ utilities.garbage_service }}</td>
                 </tr>
                 <tr>
-                    <td>Electricity</td>
+                    <td>{% trans 'Electricity'%}</td>
                     <td>{{ utilities.electricity }}</td>
                 </tr>
                 <tr>
-                    <td>Intercom Maintenance</td>
+                    <td>{% trans 'Intercom Maintenance'%}</td>
                     <td>{{ utilities.intercom_maintenance }}</td>
                 </tr>
                 <tr>
-                    <td>Gate Maintenance</td>
+                    <td>{% trans 'Gate Maintenance'%}</td>
                     <td>{{ utilities.gate_maintenance }}</td>
                 </tr>
                 <tr>
-                    <td>CCTV Maintenance</td>
+                    <td>{% trans 'CCTV Maintenance'%}</td>
                     <td>{{ utilities.cctv_maintenance }}</td>
                 </tr>
             </tbody>
             <tfoot>
                 <tr>
-                    <td>Total</td>
+                    <td>{% trans 'Total'%}</td>
                     <td>{{ utilities.amount_to_pay }}</td>
                 </tr>
             </tfoot>
@@ -104,29 +107,29 @@
         <table class="table table-striped text-white">
             <thead>
                 <tr>
-                    <th>Servises</th>
-                    <th>Norm</th>
-                    <th>Consumption</th>
+                    <th>{% trans 'Servises'%}</th>
+                    <th>{% trans 'Norm'%}</th>
+                    <th>{% trans 'Consumption'%}</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>HWS: Cold Water</td>
+                    <td>{% trans 'HWS: Cold Water'%}</td>
                     <td>{{ user.hws_cold_water_norm }}</td>
                     <td>{{ utilities.hws_cold_water_consumption }}</td>
                 </tr>
                 <tr>
-                    <td>Cold Water</td>
+                    <td>{% trans 'Cold Water'%}</td>
                     <td>{{ user.cold_water_norm }}</td>
                     <td>{{ utilities.cold_water_consumption }}</td>
                 </tr>
                 <tr>
-                    <td>Sewage</td>
+                    <td>{% trans 'Sewage'%}</td>
                     <td>{{ user.sewage_norm }}</td>
                     <td>{{ utilities.sewage_consumption }}</td>
                 </tr>
                 <tr>
-                    <td>Electricity</td>
+                    <td>{% trans 'Electricity'%}</td>
                     <td>{{ user.electricity_norm }}</td>
                     <td>{{ utilities.electricity_consumption }}</td>
                 </tr>
