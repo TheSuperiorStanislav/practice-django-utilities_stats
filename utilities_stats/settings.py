@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # 3rd Party
     'crispy_forms',
     'rest_framework',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -107,6 +108,11 @@ AUTH_USER_MODEL = 'users.UtilitiesUser'
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+
+
+# RECAPTCHA Keys
+RECAPTCHA_PUBLIC_KEY = get_env_variable('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = get_env_variable('RECAPTCHA_PRIVATE_KEY')
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

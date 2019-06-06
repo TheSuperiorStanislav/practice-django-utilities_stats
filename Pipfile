@@ -15,6 +15,7 @@ celery = "*"
 djangorestframework = "*"
 whitenoise = "*"
 gunicorn = "*"
+django-recaptcha = "*"
 
 [requires]
 python_version = "3.6"

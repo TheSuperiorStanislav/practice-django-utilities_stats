@@ -1,10 +1,18 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
+from captcha.fields import ReCaptchaField
+
 from .models import UtilitiesUser
 
 
 class UtilitiesUserCreationForm(UserCreationForm):
+    captcha = ReCaptchaField(label="I'm a human")
+
+    def clean(self):
+        cleaned_data = super().clean()
+        if not cleaned_data.get('captcha'):
+            raise forms.ValidationError("Complete Captcha!")
 
     class Meta(UserCreationForm.Meta):
         model = UtilitiesUser
