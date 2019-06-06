@@ -42,8 +42,9 @@ class UtilitiesForm(ModelForm):
     class Meta:
         model = Utilities
         fields = form_fields
+        # format fixed issue wrong date_format issue
         widgets = {
-            'date': DateInput(),
+            'date': DateInput(format='%Y-%m-%d'),
         }
 
     def __init__(self, *args, **kwargs):
