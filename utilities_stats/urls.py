@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.conf.urls.i18n import i18n_patterns
 from django.urls import path, include
 from django.views.generic import TemplateView
-from django.views.defaults import ( 
+from django.views.defaults import (
     page_not_found,
     server_error,
     permission_denied
@@ -30,14 +30,15 @@ urlpatterns = i18n_patterns(
         TemplateView.as_view(template_name='about.html'),
         name='about'
     ),
+)
+
+urlpatterns += [
     path('api/', include(router.urls)),
     path(
         'api/auth/',
         include('rest_framework.urls', namespace='rest_framework'),
     ),
-
-
-)
+]
 
 
 def custom_page_not_found(request):
