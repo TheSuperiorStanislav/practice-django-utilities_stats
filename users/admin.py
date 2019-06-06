@@ -7,9 +7,9 @@ from .models import UtilitiesUser
 
 class UtilitiesUserAdmin(UserAdmin):
     add_form = UtilitiesUserCreationForm
-    form = UtilitiesUserChangeForm
+    form_class = UtilitiesUserChangeForm
     model = UtilitiesUser
-    list_display = ['username', 'is_staff', 'electricity_norm', ]
+    list_display = ['username', 'is_staff', ]
 
 
 admin.site.register(UtilitiesUser, UtilitiesUserAdmin)

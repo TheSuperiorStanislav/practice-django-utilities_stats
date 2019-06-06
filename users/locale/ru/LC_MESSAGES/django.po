@@ -24,6 +24,9 @@ msgstr ""
 msgid "email address"
 msgstr "Email-адрес"
 
+msgid "Dark theme"
+msgstr "Темная тема"
+
 msgid "User"
 msgstr "Пользователь"
 

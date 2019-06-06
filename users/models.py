@@ -12,6 +12,12 @@ class UtilitiesUser(AbstractUser):
         _('email address'),
         unique=True,)
 
+    dark_theme = models.BooleanField(
+         _('Dark theme'),
+         default=False,
+         null=False,
+    )
+
     hws_cold_water_norm = models.FloatField(
         _('HWS Cold Water Norm'),
         null=True,

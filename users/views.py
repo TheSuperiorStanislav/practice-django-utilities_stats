@@ -2,7 +2,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
-from .forms import UtilitiesUserCreationForm
+from .forms import UtilitiesUserCreationForm, UtilitiesUserChangeForm
 from .models import UtilitiesUser
 
 
@@ -28,15 +28,17 @@ class DetailUserView(LoginRequiredMixin, DetailView):
 
 class EditUserView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = UtilitiesUser
-    fields = [
-        'first_name',
-        'last_name',
-        'email',
-        'hws_cold_water_norm',
-        'cold_water_norm',
-        'sewage_norm',
-        'electricity_norm'
-        ]
+    form_class = UtilitiesUserChangeForm
+    # fields = [
+    #     'first_name',
+    #     'last_name',
+    #     'dark_theme',
+    #     'email',
+    #     'hws_cold_water_norm',
+    #     'cold_water_norm',
+    #     'sewage_norm',
+    #     'electricity_norm',
+    # ]
     template_name = 'user_edit.html'
     context_object_name = 'utilities_user'
 
