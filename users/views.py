@@ -6,10 +6,13 @@ from .forms import UtilitiesUserCreationForm, UtilitiesUserChangeForm
 from .models import UtilitiesUser
 
 
-class SignUpView(CreateView):
+class SignUpView(UserPassesTestMixin, CreateView):
     form_class = UtilitiesUserCreationForm
     success_url = reverse_lazy('login')
     template_name = 'signup.html'
+
+    def test_func(self):
+        return not self.request.user.is_authenticated
 
 
 class DetailUserView(LoginRequiredMixin, DetailView):
@@ -29,16 +32,6 @@ class DetailUserView(LoginRequiredMixin, DetailView):
 class EditUserView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = UtilitiesUser
     form_class = UtilitiesUserChangeForm
-    # fields = [
-    #     'first_name',
-    #     'last_name',
-    #     'dark_theme',
-    #     'email',
-    #     'hws_cold_water_norm',
-    #     'cold_water_norm',
-    #     'sewage_norm',
-    #     'electricity_norm',
-    # ]
     template_name = 'user_edit.html'
     context_object_name = 'utilities_user'
 
